@@ -7,7 +7,7 @@ class AppServerDockerRedeployer implements Serializable{
     }
 
     public def redeploy(String ServerIP, String DockerImage, String CredentialsId){
-        withCredentials([usernamePassword(credentialsId: "${CredentialsId}", usernameVariable: 'DOCKER_USR', passwordVariable: 'DOCKER_PWD' )]){
+        withCredentials([usernamePassword(credentialsId: "${CredentialsId}", usernameVariable: DOCKER_USR, passwordVariable: DOCKER_PWD )]){
             getShell().pipe( "ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo docker login -u $DOCKER_USR -p $DOCKER_PWD" )
             getShell().pipe( "ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo docker pull ${DockerImage}" )
             getShell().pipe( "ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo docker stop tomcat" )
