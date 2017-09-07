@@ -1,6 +1,6 @@
 package com.deltek.pipeline
 
-class AppServerDockerRedeployer {
+class AppServerDockerRedeployer implements Serializable{
 
     public def redeploy(String ServerIP, String DockerImage, String CredentialsId){
         node('Redeploy') {
