@@ -1,3 +1,5 @@
+import java.text.*
+
 def call(String buildStatus = 'SUCCESS', Long duration) {
     // build status of null means successful
     buildStatus =  buildStatus ?: 'SUCCESS'
