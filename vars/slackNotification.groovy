@@ -1,10 +1,10 @@
-def call(String buildStatus = 'SUCCESS', Long duration) {
+def call(String buildStatus = 'SUCCESS', String duration) {
     // build status of null means successful
     buildStatus =  buildStatus ?: 'SUCCESS'
 
     // Default values
     def colorCode = '#d00000'
-    def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' $duration"
+    def subject = "${env.JOB_NAME} - #${env.BUILD_NUMBER} ${buildStatus} after $duration"
     def summary = "${subject} (${env.BUILD_URL})"
 
     // Override default values based on build status
