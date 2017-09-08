@@ -3,7 +3,7 @@ import java.text.*
 def call(String buildStatus = 'SUCCESS', Long duration) {
     // build status of null means successful
     buildStatus =  buildStatus ?: 'SUCCESS'
-    def slackNotificationFormat = new SimpleDateFormat("'after' m 'min' s 'sec'")
+    def slackNotificationFormat = new SimpleDateFormat("m 'min' s 'sec'")
     def durationString = slackNotificationFormat.format(new Date(duration))
 
     // Default values
