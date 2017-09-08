@@ -4,7 +4,7 @@ def call(String buildStatus = 'SUCCESS', Long duration) {
 
     // Default values
     def colorCode = '#d00000'
-    def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+    def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' $duration"
     def summary = "${subject} (${env.BUILD_URL})"
 
     // Override default values based on build status
