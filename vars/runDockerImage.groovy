@@ -1,4 +1,4 @@
-def call(String ServerIp, String CredentialsId, String DockerImage) {
+def call(String ServerIP, String CredentialsId, String DockerImage) {
     withCredentials([usernamePassword(credentialsId: "${CredentialsId}", usernameVariable: 'DOCKER_USR', passwordVariable: 'DOCKER_PWD')]) {
         sh "ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo docker login -u $DOCKER_USR -p $DOCKER_PWD"
         sh"ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo docker pull ${DockerImage}"
