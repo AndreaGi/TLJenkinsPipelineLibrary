@@ -9,6 +9,7 @@ def call(String ServerIP, String CredentialsId, String DockerImage) {
                 "-p 8080:8080/tcp -p 22222:22222/tcp -p 22223:22223/tcp \\ " +
                 "--name=tomcat ${DockerImage}"
         sh"ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo docker cp /docker/tomcat/conf/. tomcat:/usr/local/tomcat/conf/"
+        sh"ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo docker cp /docker/tomcat/lib/. tomcat:/usr/local/tomcat/lib/"
         sh"ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo docker start tomcat"
     }
 }
