@@ -2,7 +2,7 @@ def call(String ServerIP, String CredentialsId, String DockerImage, String Image
     withCredentials([usernamePassword(credentialsId: "${CredentialsId}", usernameVariable: 'DOCKER_USR', passwordVariable: 'DOCKER_PWD')]) {
         sh "ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo docker login -u $DOCKER_USR -p $DOCKER_PWD"
         sh"ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo docker pull ${DockerImage}"
-        sh"ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo \"sed -i 's|FROM.*|FROM andreaghetti/trafficlive:${ImageTag}|g' /docker/tomcat/Dockerfile \" "
+        sh"ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo \"sed -i 's|FROM.*|FROM andreadeltek/trafficlive:${ImageTag}|g' /docker/tomcat/Dockerfile \" "
         // If the container is already stopped/not existing we return true anyway to not let the job fails
         sh"ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo systemctl stop docker-tomcat.service || true"
         sh"ssh -o StrictHostKeyChecking=no jenkins@${ServerIP} sudo docker stop tomcat || true"
